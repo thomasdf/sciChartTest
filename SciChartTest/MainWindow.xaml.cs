@@ -43,8 +43,8 @@ namespace SciChartTest {
 			series.AcceptsUnsortedData = true;
 
 			// Note: Can also be set in Xaml, inside the tag
-			lineSeries.DataSeries = series;
-			for(int i = 0; i < 100000; i += 100) {
+			scatterSeries.DataSeries = series;
+			for(int i = 0; i < 100000; i += 10) {
 				produceData(100, i, 100000);
 			}
 
@@ -60,7 +60,7 @@ namespace SciChartTest {
 		public Task<double[]> createData(int timeout, double index, int totalcount) {
 			return Task.Run(() => {
 				Random rnd = new Random();
-				Thread.Sleep(rnd.Next(timeout));
+				Thread.Sleep(rnd.Next(timeout/2, timeout));
 				double[] resultArray = new double[100];
 				for(int i = 0; i < 100; i++) {
 					resultArray[i] = Math.Sin(2 * Math.PI * (index+i) / totalcount);

@@ -11,9 +11,12 @@
         <s:SciChartSurface x:Name="sciChartSurface" s:ThemeManager.Theme="SciChartv4Dark">
             <!--  Defines the renderable series. Each series may be styled  -->
             <s:SciChartSurface.RenderableSeries>
-                <s:FastLineRenderableSeries x:Name="lineSeries" AntiAliasing="True"
-                                    StrokeThickness="1" StrokeDashArray="2 2"
-                                    Stroke="#FFFFD927"/>
+                <s:XyScatterRenderableSeries x:Name="scatterSeries" Stroke="#FFFFD927">
+                    <s:XyScatterRenderableSeries.PointMarker>
+                        <s:EllipsePointMarker Stroke="White" StrokeThickness="2"
+                                            Fill="#FFFFD927" Width="1" Height="1"/>
+                    </s:XyScatterRenderableSeries.PointMarker>
+                </s:XyScatterRenderableSeries>
             </s:SciChartSurface.RenderableSeries>
 
             <s:SciChartSurface.ChartModifier>
