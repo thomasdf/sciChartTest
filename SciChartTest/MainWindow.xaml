@@ -1,0 +1,50 @@
+﻿<Window x:Class="SciChartTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:s="http://schemas.abtsoftware.co.uk/scichart"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SciChartTest"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="500" Width="1000">
+    <Grid>
+        <s:SciChartSurface x:Name="sciChartSurface" s:ThemeManager.Theme="SciChartv4Dark">
+            <!--  Defines the renderable series. Each series may be styled  -->
+            <s:SciChartSurface.RenderableSeries>
+                <s:FastLineRenderableSeries x:Name="lineSeries" AntiAliasing="True"
+                                    StrokeThickness="1" StrokeDashArray="2 2"
+                                    Stroke="#FFFFD927"/>
+            </s:SciChartSurface.RenderableSeries>
+
+            <s:SciChartSurface.ChartModifier>
+                <!-- —Groups many ChartModifiers on a single chart with mouse-event precedence -->
+                <s:ModifierGroup>
+                    <!-- —Provides zoom on mouse-drag -->
+                    <s:RubberBandXyZoomModifier/>
+                    <!-- —Selects Series on mouse-click -->
+                    <s:SeriesSelectionModifier/>
+                    <!-- —Zoom Extents on Double-Click -->
+                    <s:ZoomExtentsModifier/>
+                    <!-- —Provides zoom or pan on dragging a YAxis -->
+                    <s:YAxisDragModifier/>
+                    <!-- —Provides zoom or pan on dragging an XAxis -->
+                    <s:XAxisDragModifier/>
+                </s:ModifierGroup>
+            </s:SciChartSurface.ChartModifier>
+
+            <!--  Defines the XAxis, using an explicit VisibleRange  -->
+            <s:SciChartSurface.XAxis>
+                <s:NumericAxis>
+                    <s:NumericAxis.VisibleRange>
+                        <s:DoubleRange Min="0" Max="600" />
+                    </s:NumericAxis.VisibleRange>
+                </s:NumericAxis>
+            </s:SciChartSurface.XAxis>
+
+            <!--  Defines the YAxis  -->
+            <s:SciChartSurface.YAxis>
+                <s:NumericAxis />
+            </s:SciChartSurface.YAxis>
+        </s:SciChartSurface>
+    </Grid>
+</Window>
