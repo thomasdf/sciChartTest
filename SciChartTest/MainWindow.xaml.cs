@@ -45,21 +45,22 @@ namespace SciChartTest {
 			// Note: Can also be set in Xaml, inside the tag
 			lineSeries.DataSeries = series;
 			for(int i = 0; i < 100000; i += 100) {
-				produceData(10, i, 100000);
+				produceData(100, i, 100000);
 			}
 
 		}
 
 		public async void produceData(int timeout, double index, int totalcount) {
 			double[] dataArray = await createData(timeout, index, totalcount);
-			for(int i = 0; i<dataArray.Length; i++) {
+			for(int i = 1; i<dataArray.Length; i++) {
 				series.Append(index + i, dataArray[i]);
 			}
 		}
 
 		public Task<double[]> createData(int timeout, double index, int totalcount) {
 			return Task.Run(() => {
-				Thread.Sleep(timeout);
+				Random rnd = new Random();
+				Thread.Sleep(rnd.Next(timeout));
 				double[] resultArray = new double[100];
 				for(int i = 0; i < 100; i++) {
 					resultArray[i] = Math.Sin(2 * Math.PI * (index+i) / totalcount);
