@@ -21,8 +21,8 @@ namespace SciChartTest {
 	/// Interaction logic for MainWindow.xaml
 	/// </summary>
 	public partial class MainWindow : Window {
-
 		XyDataSeries<double, double> series = new XyDataSeries<double, double>();
+		XyDataSeries<double, double> series2 = new XyDataSeries<double, double>();
 
 		public MainWindow() {
 			Loaded += MainWindow_OnLoaded;
@@ -40,12 +40,15 @@ namespace SciChartTest {
 
 			// Add a data series and some data
 			series.SeriesName = "Sinewave";
+			series2.SeriesName = "mafk";
 			series.AcceptsUnsortedData = true;
+			series2.AcceptsUnsortedData = true;
 
 			// Note: Can also be set in Xaml, inside the tag
 			scatterSeries.DataSeries = series;
+			scatterSeries2.DataSeries = series2;
 			for(int i = 0; i < 100000; i += 10) {
-				produceData(100, i, 100000);
+				produceData(10, i, 100000);
 			}
 
 		}
@@ -54,6 +57,7 @@ namespace SciChartTest {
 			double[] dataArray = await createData(timeout, index, totalcount);
 			for(int i = 1; i<dataArray.Length; i++) {
 				series.Append(index + i, dataArray[i]);
+				series2.Append(index + i, dataArray[i]/2*dataArray[i]);
 			}
 		}
 
